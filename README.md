@@ -42,7 +42,7 @@ PostgreSQL (or MySQL)
 
 Clone the repository:
 
-git clone [https://github.com/your-username/spring-product-api.git](https://github.com/your-username/spring-product-api.git)
+git clone [https://github.com/Vai007/assesment.git](https://github.com/Vai007/assesment.git)
 cd spring-product-api
 
 
