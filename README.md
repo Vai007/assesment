@@ -83,41 +83,37 @@ Once the application is running, you can access the interactive Swagger UI to te
 
 🛣️ Endpoints
 
-Method
-
-Endpoint
-
-Description
+Method Endpoint Description
 
 GET
-
 /api/products
 
 Retrieve all products
 
-GET
 
+GET
 /api/products/{id}
 
 Retrieve a specific product by ID
 
-POST
 
+POST
 /api/products
 
 Create a new product
 
-PUT
 
+PUT
 /api/products/{id}
 
 Update an existing product
 
-DELETE
 
+DELETE
 /api/products/{id}
 
 Delete a product
+
 
 Sample JSON Payload (POST/PUT)
 
