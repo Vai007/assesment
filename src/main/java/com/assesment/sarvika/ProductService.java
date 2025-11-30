@@ -9,6 +9,8 @@ import java.util.UUID;
 
 public interface ProductService {
 
+    Product save(Product product);
+
     Optional<Product> getOneById(UUID id);
 
     Page<Product> findAll(Pageable pageable);

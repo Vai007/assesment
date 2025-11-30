@@ -23,6 +23,13 @@ public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
 
     @Override
+    public Product save(Product product) {
+        log.info("Request for save product");
+        log.debug("Product payload: "+product.toString());
+        return productRepository.save(product);
+    }
+
+    @Override
     public Optional<Product> getOneById(UUID id) {
         log.info("Request for product by Id: "+id);
         return productRepository.findById(id);
