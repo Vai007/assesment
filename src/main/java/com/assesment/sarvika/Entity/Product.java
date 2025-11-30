@@ -1,13 +1,12 @@
 package com.assesment.sarvika.Entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.validator.constraints.Length;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.Objects;
 import java.util.UUID;
@@ -17,20 +16,22 @@ import java.util.UUID;
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Column(name = "name")
-    @NotBlank(message = "Product name cannot be empty or null")
+    @Size(min = 3, max = 15, message = "Name should in range of 3 to 15")
     private String name;
 
     @Column(name = "description")
-    @Length(max = 10)
+    @Size(max = 500, message = "Description cannot exceed 500 characters")
     private String description;
 
     @Column(name = "price")
+    @Digits(integer = 5, fraction = 2, message = "Price can have max 2 decimal places")
+    @DecimalMin(value = "0.0", inclusive = false, message = "Price must be a positive number")
     @NotNull(message = "price value cannot be null")
-    private Double price;
+    private BigDecimal price;
 
     @Column(name = "created", updatable = false)
     @CreationTimestamp
@@ -48,27 +49,27 @@ public class Product {
         this.id = id;
     }
 
-    public @NotBlank(message = "Product name cannot be empty or null") String getName() {
+    public @Size(min = 3, max = 15, message = "Name should in range of 3 to 15") String getName() {
         return name;
     }
 
-    public void setName(@NotBlank(message = "Product name cannot be empty or null") String name) {
+    public void setName(@Size(min = 3, max = 15, message = "Name should in range of 3 to 15") String name) {
         this.name = name;
     }
 
-    public @Length(max = 10) String getDescription() {
+    public @Size(max = 500, message = "Description cannot exceed 500 characters") String getDescription() {
         return description;
     }
 
-    public void setDescription(@Length(max = 10) String description) {
+    public void setDescription(@Size(max = 500, message = "Description cannot exceed 500 characters") String description) {
         this.description = description;
     }
 
-    public @NotNull(message = "price value cannot be null") Double getPrice() {
+    public @Digits(integer = 5, fraction = 2, message = "Price can have max 2 decimal places") @DecimalMin(value = "0.0", inclusive = false, message = "Price must be a positive number") @NotNull(message = "price value cannot be null") BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(@NotNull(message = "price value cannot be null") Double price) {
+    public void setPrice(@Digits(integer = 5, fraction = 2, message = "Price can have max 2 decimal places") @DecimalMin(value = "0.0", inclusive = false, message = "Price must be a positive number") @NotNull(message = "price value cannot be null") BigDecimal price) {
         this.price = price;
     }
 
