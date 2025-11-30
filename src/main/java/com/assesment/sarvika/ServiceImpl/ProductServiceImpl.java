@@ -3,6 +3,7 @@ package com.assesment.sarvika.ServiceImpl;
 import com.assesment.sarvika.Entity.Product;
 import com.assesment.sarvika.ProductService;
 import com.assesment.sarvika.Repository.ProductRepository;
+import com.assesment.sarvika.error.InvalidRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,5 +52,9 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void deleteByID(UUID id) {
         log.info("Request to delete product_id: "+id);
+        if (!productRepository.existsById(id)){
+            throw new InvalidRequest("Product is not available with this id");
+        }
+        productRepository.deleteById(id);
     }
 }
